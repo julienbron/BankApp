@@ -5,19 +5,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Liste de clients</title>
-        <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages_en" var="message" />
+        <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages" var="message" />
     </h:head>
     <h:body>
         <h1><h:outputText value="#{message.listeClient}"/></h1>
         <h:form>    
-            <h:dataTable value="#{customersBean.customers}" var="cust">
+            <h:dataTable value="#{customersBean.customers}" var="customer">
                 <h:column>
                     <!--En-tête-->
                     <f:facet name="header">
                         <h:outputText value="#{message.numero}"/>
                     </f:facet>
                     <!--Valeur de la colonne-->
-                    #{cust.number}
+                    #{customer.number}
                 </h:column>
                 <h:column>
                     <!--En-tête-->
@@ -25,7 +25,7 @@
                         <h:outputText value="#{message.prenom}"/>
                     </f:facet>
                     <!--Valeur de la colonne-->
-                    #{cust.firstName}
+                    #{customer.firstName}
                 </h:column>
                 <h:column>
                     <!--En-tête-->
@@ -33,11 +33,11 @@
                         <h:outputText value="#{message.nom}"/>
                     </f:facet>
                     <!--Valeur de la colonne-->
-                    #{cust.lastName}
+                    #{customer.lastName}
                 </h:column>
                 <h:column>
                     <!--Bouton permettant d'afficher les détails-->
-                    <h:commandButton value="#{message.detail}"/>
+                    <h:commandLink value="#{message.detail}" action="#{customerDetailsBean.getCustomer(customer.number)}"/>
                 </h:column>
             </h:dataTable>
         </h:form>

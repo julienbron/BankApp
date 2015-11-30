@@ -1,5 +1,6 @@
 package ch.hearc.ig.odi.customeraccount.services;
 
+import ch.hearc.ig.odi.customeraccount.business.Account;
 import ch.hearc.ig.odi.customeraccount.business.Bank;
 import ch.hearc.ig.odi.customeraccount.business.Customer;
 import java.io.Serializable;
@@ -67,5 +68,9 @@ public class Services implements Serializable{
      */
     public List<Customer> getCustomersList(){
         return new ArrayList(getCustomers().values());
+    }
+    
+    public Account getAccount(String number){
+        return bank.getAccountByNumber(number);
     }
 }

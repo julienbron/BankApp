@@ -9,14 +9,19 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Succès</title>
+        <title>Détail compte</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages" var="message" />
-        
     </h:head>
     <h:body>
-        <h1><h:outputText value="#{message.succes}"/></h1>
-        <p><h:outputText value="#{message.ajoutReussi}"/></p>
+        <h1><h:outputText value="#{message.detailCompte}"/></h1>
+        
+        <h:outputText value="#{message.numero}: #{accountDetailsBean.number}"/><br/>
+        <h:outputText value="#{message.libelle}: #{accountDetailsBean.name}"/><br/>
+        <h:outputText value="#{message.solde}: #{accountDetailsBean.balance}"/><br/>
+        <h:outputText value="#{message.taux}: #{accountDetailsBean.rate}"/><br/>
+        
+        <h:button value="#{message.retourClient}" outcome="CustomerDetails"/>
         <h:button value="#{message.pageAccueil}" outcome="customersList"/>
     </h:body>
 </html>
