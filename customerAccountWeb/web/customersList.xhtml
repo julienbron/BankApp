@@ -8,6 +8,7 @@
         <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages_en" var="message" />
     </h:head>
     <h:body>
+        <h1><h:outputText value="#{message.listeClient}"/></h1>
         <h:form>    
             <h:dataTable value="#{customersBean.customers}" var="cust">
                 <h:column>
@@ -41,7 +42,7 @@
             </h:dataTable>
         </h:form>
         
-        <h:button value="#{message.ajouter}" outcome="CreateClient" />
+        <h:button value="#{message.ajouter}" outcome="createCustomer" />
     </h:body>
 </html>
 

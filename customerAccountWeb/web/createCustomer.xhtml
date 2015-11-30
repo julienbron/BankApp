@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Création d'un client</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages_en" var="message" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p><h:outputText value="#{message.numero}"/> : <h:inputText value="#{customerCreateBean.number}" required="true" requiredMessage="#{message.numeroErreur}"/></p>
+            <p><h:outputText value="#{message.prenom}"/> : <h:inputText value="#{customerCreateBean.firstName}" required="true" requiredMessage="#{message.prenomErreur}"/></p>
+            <p><h:outputText value="#{message.nom}"/> : <h:inputText value="#{customerCreateBean.lastName}" required="true" requiredMessage="#{message.nomErreur}"/></p>
+            <p>
+                <h:commandButton value="#{message.inserer}" type="submit" action="#{customerCreateBean.createCustomer()}"/>
+                <h:commandButton value="#{message.reinitialiser}" type="reset"/>
+            </p>
+            <p><h:messages errorStyle="color:red"/></p>
+        </h:form>
+        <h:button value="#{message.annuler}" outcome="customersList"/>
+    </h:body>
+</html>
