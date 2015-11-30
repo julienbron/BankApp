@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Liste de clients</title>
+        <f:loadBundle basename="ch.hearc.ig.odi.customeraccount.messages.messages_en" var="message" />
+    </h:head>
+    <h:body>
+        <h:form>    
+            <h:dataTable value="#{customersBean.customers}" var="cust">
+                <h:column>
+                    <!--En-tête-->
+                    <f:facet name="header">
+                        <h:outputText value="#{message.numero}"/>
+                    </f:facet>
+                    <!--Valeur de la colonne-->
+                    #{cust.number}
+                </h:column>
+                <h:column>
+                    <!--En-tête-->
+                    <f:facet name="header">
+                        <h:outputText value="#{message.prenom}"/>
+                    </f:facet>
+                    <!--Valeur de la colonne-->
+                    #{cust.firstName}
+                </h:column>
+                <h:column>
+                    <!--En-tête-->
+                    <f:facet name="header">
+                        <h:outputText value="#{message.nom}"/>
+                    </f:facet>
+                    <!--Valeur de la colonne-->
+                    #{cust.lastName}
+                </h:column>
+                <h:column>
+                    <!--Bouton permettant d'afficher les détails-->
+                    <h:commandButton value="#{message.detail}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <h:button value="#{message.ajouter}" outcome="CreateClient" />
+    </h:body>
+</html>
+

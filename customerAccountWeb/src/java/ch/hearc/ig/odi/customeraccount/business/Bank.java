@@ -6,6 +6,7 @@
 package ch.hearc.ig.odi.customeraccount.business;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,48 +15,47 @@ import java.util.Map;
  */
 public class Bank {
     
-    int number;
+   int number;
     String name;
-    private Map<String, Account> accounts;
-    private Map<Integer, Customer> customers;
+    Map<Integer, Customer> customers;
+    Map<String, Account> accounts;
+    
 
     public Bank(int number, String name) {
         this.number = number;
         this.name = name;
-    }
-    
-    public Account getAccountByNumber(String number){
-        Account accountSearch = accounts.get(number);
-        return accountSearch;
-    }
-    
-    public Customer getCustomerByNumber(int number){
-        Customer customerSearch = customers.get(number);
-        return customerSearch;
         
+        customers = new HashMap();
+        accounts = new HashMap();
     }
     
-    
-    
-    public Customer addCustomer(int number, String fn, String ln){
-        Customer newCustomer = new Customer(number,fn,ln);
-        customers.put(number, newCustomer);
-        return newCustomer;
-    }
-    
-    public void addAccount(String number, String name, double rate, Customer customer){
-        
-        if (getCustomerByNumber(customer.getNumber()) != null) {
-            Account newAccount = new Account(number, name, rate, customer);
-            accounts.put(number, newAccount);
-        }
-        
-    }
-
-    public Map<Integer, Customer> getCustomers() {
+    public Map getCustomers(){
         return customers;
     }
     
+    public Map getAccounts(){
+        return accounts;
+    }
+    public Account getAccountByNumber(String number){
+        return accounts.get(number);
+    }
+    
+    public Customer getCustomerByNumber(int number){
+        return customers.get(number);
+    }
+    
+    public Customer addCustomer(int number, String firstName, String lastName){
+        Customer customer = new Customer(number, firstName, lastName);
+        customers.put(number, customer);
+        return customer;
+    }
+    
+    public Account addAccount(String number, String name, double rate, Customer customer){
+        Account account = new Account(number, name, rate, customer);
+        accounts.put(number, account);
+        customer.addAccount(account);
+        return account;
+    }
     
     
 }

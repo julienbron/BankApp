@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Customer {
 
-    private Collection<Account> accounts;
+   private List<Account> accounts;
     private int number;
     private String firstName;
     private String lastName;
@@ -15,43 +15,48 @@ public class Customer {
      * @param firstName
      * @param lastName
      */
-    public Customer(int number, String firstName, String lastName) {
+    public Customer(Integer number, String firstName, String lastName) {
         this.number = number;
         this.firstName = firstName;
         this.lastName = lastName;
+
+        this.accounts = new ArrayList<>();
     }
 
     /**
      *
      * @param number
-     * @return 
      */
     public Account getAccountByNumber(String number) {
-        Account returnedAccount = null;
-        for (Account e : accounts) {
- 
-            if (e.getNumber().equals(number)) {
-                returnedAccount = e;
-                break;
-
+        Account account = null;
+        boolean found = false;
+        int i = 0;
+        while (!found && i <= accounts.size()) {
+            if (accounts.get(i).getNumber().equals(number)) {
+                found = true;
+                account = accounts.get(i);
             }
         }
-        return returnedAccount;
+        if (!found) {
+            throw new IllegalArgumentException("This account doesn't exist");
+        }
+        return account;
     }
 
-    /**
-     *
-     * @param number
-     * @param name
-     * @param rate
-     */
-    public void addAccount(String number, String name, double rate) {
-        Account account = new Account(number,name,rate,null);
+    public void addAccount(Account account) {
         accounts.add(account);
     }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     public int getNumber() {
-        return this.number;
+        return number;
     }
 
     public void setNumber(int number) {
@@ -59,7 +64,7 @@ public class Customer {
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -67,11 +72,11 @@ public class Customer {
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    
 }

@@ -4,6 +4,16 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     
+    <navigation-rule>
+        <from-view-id>/customerList.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{customerDetailsBean.recupCustomer(cust.number)}</from-action>
+            <from-outcome>0</from-outcome>
+            <to-view-id>/customerDetails.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
     <application>
 <!-- URL du package contenant les message_XX.properties -->
        <resource-bundle>
