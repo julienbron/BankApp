@@ -1,5 +1,8 @@
 package ch.hearc.ig.odi.customeraccount.business;
 
+import javax.enterprise.context.RequestScoped;
+
+@RequestScoped
 public class Account {
 
     private Customer customer;

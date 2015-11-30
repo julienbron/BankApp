@@ -6,6 +6,7 @@
 package ch.hearc.ig.odi.customeraccount.business;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  *
@@ -15,8 +16,8 @@ public class Bank {
     
     int number;
     String name;
-    private Collection<Account> accounts;
-    private Collection<Customer> customers;
+    private Map<String, Account> accounts;
+    private Map<Integer, Customer> customers;
 
     public Bank(int number, String name) {
         this.number = number;
@@ -24,40 +25,35 @@ public class Bank {
     }
     
     public Account getAccountByNumber(String number){
-        Account accountSearch = null;
-            for (Account account : accounts) {
-                if (account.getNumber().equals(number)) {
-                    accountSearch = account;
-                    break;
-                }
-            }
+        Account accountSearch = accounts.get(number);
         return accountSearch;
     }
     
     public Customer getCustomerByNumber(int number){
-        Customer customerSearch = null;
-            for (Customer customer : customers) {
-                if (customer.getNumber() == number) {
-                    customerSearch = customer;
-                    break;
-                }
-            }
+        Customer customerSearch = customers.get(number);
         return customerSearch;
         
     }
     
-    public void addCustomer(int number, String fn, String ln){
+    
+    
+    public Customer addCustomer(int number, String fn, String ln){
         Customer newCustomer = new Customer(number,fn,ln);
-        customers.add(newCustomer);
+        customers.put(number, newCustomer);
+        return newCustomer;
     }
     
     public void addAccount(String number, String name, double rate, Customer customer){
         
         if (getCustomerByNumber(customer.getNumber()) != null) {
             Account newAccount = new Account(number, name, rate, customer);
-            accounts.add(newAccount);
+            accounts.put(number, newAccount);
         }
         
+    }
+
+    public Map<Integer, Customer> getCustomers() {
+        return customers;
     }
     
     
